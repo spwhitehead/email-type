@@ -4,6 +4,11 @@ from email_validator import validate_email, EmailNotValidError
 email = input("Enter your email address: ")
 
 try:
-    email = validate_email(email).email
+    emailinfo = validate_email(email, check_deliverability=True)
+
+    email = emailinfo.normalized
+
+    print("Email is valid")
+
 except EmailNotValidError as e:
     print(str(e))
